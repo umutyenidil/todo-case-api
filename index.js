@@ -13,6 +13,11 @@ server.use(cors());
 
 server.use(express.json());
 
+server.use((req, res, next) => {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    next();
+});
+
 server.use(routes);
 
 const MONGODB_URL = process.env.MONGODB_CONNECTION_STRING || "mongodb://localhost:27017";
