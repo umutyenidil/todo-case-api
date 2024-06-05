@@ -2,17 +2,14 @@ const TodoModel = require('../../../../models/todo-model');
 
 module.exports = async (req, res) => {
     try {
-        const incomingData = req.body.data;
+        const todoId = req.params.id;
 
-        await TodoModel.findByIdAndUpdate(incomingData.id, {
+        await TodoModel.findByIdAndUpdate(todoId, {
             deletedAt: Date.now(),
             isDeleted: true,
         });
 
-        return res.status(200).json({
-            status: 200,
-            message: "successful",
-        });
+        return res.sendStatus(204);
     } catch (err) {
         return res.status(500).json({
             status: 500,

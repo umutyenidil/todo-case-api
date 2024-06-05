@@ -19,15 +19,13 @@ router.post(
     todosController.postCreateTodo,
 );
 
-router.post(
-    '/delete',
-    requiredFieldsMiddleware(['id']),
+router.delete(
+    '/:id',
     todosController.postDeleteTodo,
 );
 
-router.post(
-    '/update',
-    requiredFieldsMiddleware(['id']),
+router.put(
+    '/:id',
     todosController.postUpdateTodo,
 );
 
