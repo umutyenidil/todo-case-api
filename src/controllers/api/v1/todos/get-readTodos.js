@@ -2,14 +2,18 @@ const TodoModel = require('../../../../models/todo-model');
 
 module.exports = async (req, res) => {
     try {
+        const searchParams = req.query;
+
         let todos = await TodoModel.find(
             {
+                isCompleted: searchParams.completed,
                 isDeleted: false,
             },
             {
                 id: 1,
                 title: 1,
                 description: 1,
+                isCompleted: 1,
             },
         );
 
