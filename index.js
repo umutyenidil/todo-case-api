@@ -15,8 +15,8 @@ server.use(express.json());
 
 server.use(routes);
 
-const MONGODB_URL = "mongodb://localhost:27017";
-server.listen(3001, '127.0.0.1',() => {
+const MONGODB_URL = process.env.MONGODB_CONNECTION_STRING || "mongodb://localhost:27017";
+server.listen(3001, () => {
     mongoose.connect(MONGODB_URL, {
         dbName: 'todo_case',
     }).then(() => {
