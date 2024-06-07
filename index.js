@@ -13,17 +13,12 @@ server.use(cors());
 
 server.use(express.json());
 
-server.use((req, res, next) => {
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    next();
-});
-
 server.use(routes);
 
-const MONGODB_URL = process.env.MONGODB_CONNECTION_STRING || "mongodb://localhost:27017";
-server.listen(3000, () => {
+const MONGODB_URL = "mongodb://localhost:27017";
+server.listen(3001, '127.0.0.1',() => {
     mongoose.connect(MONGODB_URL, {
-        dbName: 'todos-case-db',
+        dbName: 'todo_case',
     }).then(() => {
         console.log('mongodb connected');
     });

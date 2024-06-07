@@ -4,11 +4,16 @@ module.exports = async (req, res) => {
     try {
         const searchParams = req.query;
 
+        const filter = {
+            isDeleted: false,
+        };
+
+        if (searchParams.completed) {
+            filter['isCompleted'] = searchParams.completed;
+        }
+
         let todos = await TodoModel.find(
-            {
-                isCompleted: searchParams.completed,
-                isDeleted: false,
-            },
+            filter,
             {
                 id: 1,
                 title: 1,

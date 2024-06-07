@@ -12,6 +12,9 @@ module.exports = async (req, res) => {
         if ("description" in incomingData) {
             updateData['description'] = incomingData.description;
         }
+        if ("isCompleted" in incomingData) {
+            updateData['isCompleted'] = incomingData.isCompleted;
+        }
 
         if (Object.keys(updateData).length > 0) {
             await TodoModel.findByIdAndUpdate(todoId, {
